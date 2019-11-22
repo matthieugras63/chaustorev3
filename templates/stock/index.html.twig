@@ -9,6 +9,8 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Product</th>
+                <th>Size</th>
                 <th>Stock</th>
                 <th>actions</th>
             </tr>
@@ -17,6 +19,8 @@
         {% for stock in stocks %}
             <tr>
                 <td>{{ stock.id }}</td>
+                <td>{{ stock.product }}</td>
+                <td>{{ stock.size }}</td>
                 <td>{{ stock.stock }}</td>
                 <td>
                     <a href="{{ path('stock_show', {'id': stock.id}) }}">show</a>
@@ -33,4 +37,6 @@
     </table>
 
     <a href="{{ path('stock_new') }}">Create new</a>
+        <a href="{{ path('index') }}">Back</a>
+
 {% endblock %}

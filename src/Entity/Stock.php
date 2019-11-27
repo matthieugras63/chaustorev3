@@ -3,9 +3,15 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\ORM\Mapping\UniqueConstraint;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\StockRepository")
+ * @ORM\Table(uniqueConstraints={
+ *        @UniqueConstraint(columns={"size_id", "product_id"},)
+ *    }
+ * )
  */
 class Stock
 {

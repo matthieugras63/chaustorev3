@@ -5,9 +5,15 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BrandRepository")
+ * @UniqueEntity(
+ * fields={"name"},
+ * message="The brand {{ value }} is already registered"
+ * )
  */
 class Brand
 {
@@ -19,7 +25,7 @@ class Brand
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $name;
 
@@ -27,6 +33,11 @@ class Brand
      * @ORM\OneToMany(targetEntity="App\Entity\Product", mappedBy="brand")
      */
     private $products;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $logo;
 
     public function __construct()
     {
@@ -82,5 +93,17 @@ class Brand
     }
     public function __toString() {
         return $this->name;
+    }
+
+    public function getLogo(): ?string
+    {
+        return $this->logo;
+    }
+
+    public function setLogo(?string $logo): self
+    {
+        $this->logo = $logo;
+
+        return $this;
     }
 }

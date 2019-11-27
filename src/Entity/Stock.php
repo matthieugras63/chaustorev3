@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping\UniqueConstraint;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\StockRepository")
- * @ORM\Table(uniqueConstraints={
- *        @UniqueConstraint(columns={"size_id", "product_id"},)
- *    }
+ * @UniqueEntity(
+ * fields ={"product","size"},
+ * message="You already have stock for this product",
  * )
  */
 class Stock

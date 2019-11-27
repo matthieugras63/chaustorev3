@@ -9,9 +9,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Config\Definition\Exception\Exception;
 
 /**
- * @Route("/color")
+ * @Route("/admin/color")
  */
 class MyColorController extends AbstractController
 {
@@ -28,10 +29,10 @@ class MyColorController extends AbstractController
     /**
      * @Route("/new", name="color_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+        public function new(Request $request): Response
     {
-        $color = new Color();
-        $form = $this->createForm(MyColorType::class, $color);
+        $color = new color();
+        $form = $this->createForm(CategoryType::class, $color);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

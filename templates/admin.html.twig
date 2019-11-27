@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block title %}Index{% endblock %}
+{% block body %}
+<h1>Chaustore management</h1>
+<div class="menu">
+    <button><a href="{{ path('brand_index') }}">Brand</a></button>
+    <button><a href="{{ path('color_index') }}">Color</a></button>
+    <button><a href="{{ path('category_index') }}">Category</a></button>
+    <button><a href="{{ path('size_index') }}">Size</a></button>
+    <button><a href="{{ path('stock_index') }}">Stock</a></button>
+    <button><a href="{{ path('product_index') }}">Product</a></button>
+    <button><a href="{{ path('user_index') }}">User</a></button> </div>
+{% endblock %}

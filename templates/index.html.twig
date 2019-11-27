@@ -1,10 +1,24 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Index{% endblock %}
-{% block body %}
-<h1>Chaustore management</h1>
-<div class="menu">
-    <button><a href="{{ path('register') }}">Register</a></button>
-    <button><a href="{{ path('app_login') }}">Login</a></button>
+  {% block body %}
+    <h1>Chaustore management</h1>
+    <div class="menu">
+      <button><a href="{{ path('register') }}">Register</a></button>
+      {% if not app.user %}
+        <button><a href="{{ path('app_login') }}">Login</a></button>
+      {% else %}
+        <button><a href="{{ path('app_logout') }}">logout</a></button>
+        <button><a href="{{ path('app_login') }}">Panier</a></button>
+      {% endif %}
 
-{% endblock %}
+      {% if app.user %}
+
+      You are logged in as {{ app.user.username }} <br/>
+      {% for roles in app.user.roles %}
+        You have the role : {{ roles }}.<br/>
+      {% endfor %}
+
+      {% endif %}
+
+    {% endblock %}
